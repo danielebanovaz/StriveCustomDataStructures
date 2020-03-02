@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace StriveCustomDataStructures
 {
@@ -12,19 +14,20 @@ namespace StriveCustomDataStructures
             {
                 // Test some operations of our newly created StriveArrayList
 
-                StriveArrayList myList = new StriveArrayList();
+                IStriveList myList = new StriveLinkedList();
+
                 myList.Insert(1000);
                 myList.Insert(2000);
                 myList.Insert(3000);
                 myList.Insert(4000);
                 myList.Insert(5000);
                 myList.Insert(7);
-                Console.WriteLine("is it full: " + myList.IsFull);
+                //Console.WriteLine("is it full: " + myList.IsFull);
                 myList.Insert(50, 2);
-                //myList.Remove(0);
+                myList.Remove(0);
                 //myList.Remove(myList.Count - 1);
                 myList.Insert(10000);
-                Console.WriteLine("is it full: " + myList.IsFull);
+                //Console.WriteLine("is it full: " + myList.IsFull);
                 myList.Insert(20000);
 
 
@@ -49,35 +52,57 @@ namespace StriveCustomDataStructures
                 // Why? IE: To release resources
             }
 
-            /*
-            // Faina's exercise
-            int[] firstArray = new int[5];
-            firstArray[0] = 4;
-            for (int i = 1; i < firstArray.Length; i++)
-            {
-                firstArray[i] = new Random().Next(0, 101);
-            }
+            #region .NET System.Collections Examples
 
-            for (int i = 0; i < firstArray.Length; i++)
-            {
-                Console.Write(firstArray[i] + " | ");
-            }
-            Console.WriteLine("Second array");
+            // Examples of usage of the default System.Collections Data Structures
+            // NOTE: they all involve boxing/unboxing, avoid using them
+            ArrayList arrayList = new ArrayList();
+            arrayList[0] = 1;
+            arrayList[1] = "my dog";
+            arrayList[2] = arrayList;
+            ((string)arrayList[1]).Split('0');
 
-            int[] secondArray = new int[firstArray.Length * 2];
-            int newValue = new Random().Next(0, 101);
-            secondArray[0] = firstArray[0] + 1;
-            for (int i = 1; i <= firstArray.Length; i++)
-            {
-                secondArray[i] = i == firstArray.Length ? newValue : firstArray[i];
-            }
+            Stack stack = new Stack();
 
-            secondArray[7] = 1000;
+            Queue queue = new Queue();
 
-            for (int i = 0; i < secondArray.Length; i++)
-            {
-                Console.Write(secondArray[i] + " | ");
-            }*/
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("pocket", "my pocket definition straight outta dictionary");
+
+            #endregion .NET System.Collections Examples
+
+            #region Our GENERIC StriveLinkedList
+
+            StriveLinkedListGeneric<string> genericList = new StriveLinkedListGeneric<string>();
+            genericList.Insert("dog");
+            genericList[0].ToUpper();
+
+            StriveLinkedListGeneric<float> genericListButOfFloats = new StriveLinkedListGeneric<float>();
+            genericListButOfFloats.Insert(0.25f);
+            genericListButOfFloats[0]++;
+
+            StriveLinkedListGeneric<int> genericListButOfInts = new StriveLinkedListGeneric<int>();
+            genericListButOfInts.Insert(5);
+            genericListButOfInts[0]++;
+
+            #endregion Our GENERIC StriveLinkedList
+
+            #region .NET System.Collections.Generic Examples
+
+            // Examples of usage of the default System.Collections.Generic Data Structures
+            // NOTE: they are way better, please use them!
+
+            LinkedList<int> frameworkLinkedList = new LinkedList<int>();
+            Stack<string> frameworkStack = new Stack<string>();
+            Queue<DateTime> frameworkQueue = new Queue<DateTime>();
+            List<long> frameworkArrayList = new List<long>();
+            Dictionary<string, float> frameworkDictionary = new Dictionary<string, float>();
+            frameworkDictionary.Add("Aby", 43);
+            frameworkDictionary.Add("Neha", 39);
+            frameworkDictionary.Add("Diego", 42);
+            //frameworkDictionary.Add(12, 39); // <- Not allowed by the compiler
+
+            #endregion .NET System.Collections.Generic Examples
         }
     }
 }

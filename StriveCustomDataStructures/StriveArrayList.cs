@@ -5,7 +5,7 @@ namespace StriveCustomDataStructures
     /// <summary>
     /// Our concrete implementation of a List, based on Arrays
     /// </summary>
-    class StriveArrayList
+    class StriveArrayList : IStriveList
     {
         /// <summary>
         /// The array we internally use to store data
